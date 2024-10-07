@@ -1,19 +1,42 @@
 "use client";
-import { useState } from 'react';
-import Link from 'next/link';
+import { useState, useEffect } from "react";
+import Link from "next/link";
 
 function Navbar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("Introduction");
 
   const navigationLinks = [
-    { name: 'Introduction', href: '#introduction' },
-    { name: 'Skills Highlight', href: '#skills-highlight' },
-    { name: 'Work Experience', href: '#work-experience' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Education', href: '#education' },
-    { name: 'Availability', href: '#availability' },
-    { name: 'Contact', href: '#contact' },
+    { name: "Introduction", href: "#introduction" },
+    { name: "Skills Highlight", href: "#skills-highlight" },
+    { name: "Work Experience", href: "#work-experience" },
+    { name: "Skills", href: "#skills" },
+    { name: "Education", href: "#education" },
+    { name: "Availability", href: "#availability" },
+    { name: "Contact", href: "#contact" },
   ];
+
+  // Detect active section based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      navigationLinks.forEach((link) => {
+        const section = document.querySelector(link.href);
+        if (section) {
+          const sectionTop = section.offsetTop - 100;
+          const sectionHeight = section.offsetHeight;
+          if (
+            scrollPosition >= sectionTop &&
+            scrollPosition < sectionTop + sectionHeight
+          ) {
+            setActiveSection(link.name);
+          }
+        }
+      });
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <>
@@ -26,12 +49,18 @@ function Navbar() {
         >
           <svg className="h-6 w-6 fill-current" viewBox="0 0 24 24">
             {sidebarOpen ? (
+              // Cross icon when sidebar is open
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
-                d="M19 13H5v-2h14v2z"
+                d="M6 18L18 6M6 6l12 12"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             ) : (
+              // Hamburger icon when sidebar is closed
               <path
                 fillRule="evenodd"
                 clipRule="evenodd"
@@ -45,7 +74,7 @@ function Navbar() {
       {/* Sidebar */}
       <div
         className={`fixed top-0 ${
-          sidebarOpen ? 'left-0' : '-left-full'
+          sidebarOpen ? "left-0" : "-left-full"
         } sm:left-0 h-full w-64 bg-white shadow-md z-30 transition-all duration-300`}
       >
         <div className="p-4">
@@ -57,8 +86,15 @@ function Navbar() {
               <li key={link.name}>
                 <Link
                   href={link.href}
-                  className="text-gray-800 hover:text-blue-600"
-                  onClick={() => setSidebarOpen(false)}
+                  className={`block px-4 py-2 rounded-md transition-all duration-300 ${
+                    activeSection === link.name
+                      ? "bg-blue-100 text-blue-600 font-bold"
+                      : "text-gray-800 hover:bg-blue-50 hover:text-blue-600"
+                  }`}
+                  onClick={() => {
+                    setSidebarOpen(false);
+                    setActiveSection(link.name);
+                  }}
                 >
                   {link.name}
                 </Link>

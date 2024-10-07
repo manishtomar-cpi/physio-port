@@ -27,13 +27,13 @@ export default function Introduction() {
         </h2>
 
         {/* Image */}
-        <div className="mb-8">
+        <div className="mb-8 flex justify-center">
           <Image
             src={physioImage}
             alt="Physiotherapy Illustration"
             width={600}
             height={400}
-            className="w-full h-auto rounded-none object-cover"
+            className="w-full h-64 md:h-80 lg:h-96 rounded-none object-cover"
           />
         </div>
 

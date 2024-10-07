@@ -14,6 +14,7 @@ export default function ContactForm() {
   });
   const [formStatus, setFormStatus] = useState(''); // For form status
   const [formSubmitted, setFormSubmitted] = useState(false); // To handle form visibility
+  const [isSending, setIsSending] = useState(false); // To handle sending state
 
   // Function to handle input changes
   const handleChange = (e) => {
@@ -41,6 +42,8 @@ export default function ContactForm() {
       return;
     }
 
+    setIsSending(true); // Set sending state to true
+
     // Sending the email using Email.js
     emailjs
       .send(
@@ -52,10 +55,12 @@ export default function ContactForm() {
       .then(
         () => {
           setFormSubmitted(true); // Show success message
+          setIsSending(false); // Set sending state back to false
         },
         (error) => {
           console.error('FAILED...', error);
           setFormStatus('Failed to send message. Please try again.');
+          setIsSending(false); // Set sending state back to false
         }
       );
   };
@@ -69,6 +74,7 @@ export default function ContactForm() {
     });
     setFormSubmitted(false);
     setFormStatus('');
+    setIsSending(false);
   };
 
   return (
@@ -121,20 +127,32 @@ export default function ContactForm() {
             ></textarea>
           </div>
           {formStatus && <p className="text-red-500">{formStatus}</p>}
+
+          {/* Send Button */}
           <button
             type="submit"
-            className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700"
+            className={`px-6 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 ${isSending ? 'animate-pulse' : ''}`}
+            disabled={isSending}
           >
-            Send
+            {isSending ? 'Sending...' : 'Send'}
           </button>
         </form>
       ) : (
         // Success Message Section
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center sm:flex-row sm:items-start">
+        {/* Image on the left */}
+        <div className="sm:mr-4 mb-4 sm:mb-0">
           <Image src={hiImage} alt="Hi" width={100} height={100} />
-          <p className="mt-4 text-lg text-gray-700 text-center">
+        </div>
+      
+        {/* Message and Button on the right */}
+        <div className="flex flex-col items-center sm:items-start">
+          {/* Message Text */}
+          <p className="mt-4 text-lg text-gray-700 text-center sm:text-left">
             Hi, I have received your email and will get back to you shortly!
           </p>
+      
+          {/* Button below the message */}
           <button
             onClick={resetForm}
             className="mt-4 px-6 py-2 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700"
@@ -142,6 +160,8 @@ export default function ContactForm() {
             Alright
           </button>
         </div>
+      </div>
+      
       )}
     </div>
   );

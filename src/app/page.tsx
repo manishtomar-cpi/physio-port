@@ -10,12 +10,12 @@ import ContactForm from '../components/ContactForm';
 
 export default function Home() {
   return (
-    <div className="flex flex-col sm:flex-row">
+    <div className="flex sm:flex-row overflow-hidden">
       {/* Navbar */}
       <Navbar />
 
       {/* Main content */}
-      <div className="flex-grow p-8 sm:p-20 ml-0 sm:ml-64 pt-16 sm:pt-0">
+      <div className="flex-grow p-8 sm:p-16 ml-0 sm:ml-64 pt-16 sm:pt-0 max-w-full min-w-0"> {/* Adjusted width and padding */}
         <main className="flex flex-col gap-16">
           {/* Introduction Section */}
           <section id="introduction">

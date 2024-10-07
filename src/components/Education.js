@@ -23,6 +23,7 @@ export default function Education() {
       degree: "Master's Degree, Physiotherapy",
       university: "Cardiff University",
       duration: "Sep 2023 - Mar 2025",
+      location: "Cardiff, UK",
       points: [
         "Musculoskeletal Physiotherapy (MSK): Comprehensive understanding and hands-on experience in MSK assessment and treatment.",
         "Kinesiology: Explored biomechanics and physiological processes behind human movement.",
@@ -35,6 +36,7 @@ export default function Education() {
       degree: "Bachelor's Degree, Physiotherapy",
       university: "Garden City University",
       duration: "Aug 2017 - Jul 2022",
+      location: "Bangalore, India",
       points: [
         "Internship: Completed a 6-month internship at Apollo Hospitals, focusing on musculoskeletal and post-surgical rehabilitation.",
         "Organizational Skills: Developed excellent organizational skills through patient management.",
@@ -83,14 +85,17 @@ export default function Education() {
               className="w-full flex-shrink-0 px-4"
               style={{ flexBasis: "100%" }}
             >
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 text-left">
+              <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-2 text-left">
                 {edu.university}
               </h3>
-              <p className="text-lg font-medium text-gray-600 text-left mb-4">
+              <p className="text-lg font-medium text-gray-600 text-left mb-2">
                 {edu.degree}
               </p>
-              <p className="text-sm font-medium text-gray-500 text-left mb-4">
+              <p className="text-sm font-medium text-gray-500 text-left mb-2">
                 {edu.duration}
+              </p>
+              <p className="text-sm font-medium text-gray-500 text-left mb-3">
+                {edu.location}
               </p>
               
               <EducationDetails points={edu.points} />
