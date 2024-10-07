@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
-import physioImage from '../assets/physio.jpg';
+import { useState } from "react";
+import Image from "next/image";
+import physioImage from "../assets/physio.jpg";
 
 export default function Introduction() {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const introductionText =
-    'Experienced physiotherapist with over two years in hospital and clinical settings, specializing in musculoskeletal physiotherapy, in-patient care, and ICU critical care. Proficient in developing tailored rehabilitation programs and utilizing healthcare IT systems, including EHR and physiotherapy software, to optimize patient assessment and recovery. Skilled in advanced therapeutic techniques and multidisciplinary collaboration to deliver evidence-based care that enhances patient outcomes and mobility.';
+    "Experienced physiotherapist with over two years in hospital and clinical settings, specializing in musculoskeletal physiotherapy, in-patient care, and ICU critical care. Proficient in developing tailored rehabilitation programs and utilizing healthcare IT systems, including EHR and physiotherapy software, to optimize patient assessment and recovery. Skilled in advanced therapeutic techniques and multidisciplinary collaboration to deliver evidence-based care that enhances patient outcomes and mobility.";
 
   const previewText = introductionText.slice(0, 100);
 
@@ -23,7 +23,7 @@ export default function Introduction() {
 
         {/* Subheading */}
         <h2 className="text-xl sm:text-2xl text-gray-700 mb-8">
-        I&apos;m a Physiotherapist
+          I&apos;m a Physiotherapist
         </h2>
 
         {/* Image */}
@@ -33,7 +33,7 @@ export default function Introduction() {
             alt="Physiotherapy Illustration"
             width={600}
             height={400}
-            className="w-full h-auto"
+            className="w-full h-auto rounded-none object-cover"
           />
         </div>
 
@@ -45,7 +45,7 @@ export default function Introduction() {
           className="mt-1 text-blue-600 hover:underline focus:outline-none"
           onClick={() => setIsExpanded(!isExpanded)}
         >
-          {isExpanded ? 'View Less' : 'View More'}
+          {isExpanded ? "View Less" : "View More"}
         </button>
       </div>
     </div>

@@ -19,7 +19,7 @@ function Navbar() {
     <>
       {/* Mobile Header */}
       <div className="sm:hidden flex items-center justify-between bg-white p-4 shadow-md fixed top-0 left-0 right-0 z-20">
-        <div className="font-bold text-xl text-blue-600">Virta</div>
+        <div className="font-bold text-xl text-blue-600">Dr. Virta</div>
         <button
           className="text-gray-800 focus:outline-none"
           onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -50,7 +50,7 @@ function Navbar() {
       >
         <div className="p-4">
           <div className="font-bold text-2xl text-blue-600 mb-8 sm:block hidden">
-            Virta
+            Dr. Virta
           </div>
           <ul className="space-y-4">
             {navigationLinks.map((link) => (
