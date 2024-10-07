@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import physioImage from '../assets/sports-physiotherapy-illustration_23-2150076877.png';
+import physioImage from '../assets/physio.jpg';
 
 export default function Introduction() {
   const [isExpanded, setIsExpanded] = useState(false);
